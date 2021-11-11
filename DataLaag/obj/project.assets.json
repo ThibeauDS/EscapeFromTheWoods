@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net5.0": {
+      "DomeinLaag/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/DomeinLaag.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DomeinLaag.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "DomeinLaag/1.0.0": {
+      "type": "project",
+      "path": "../DomeinLaag/DomeinLaag.csproj",
+      "msbuildProject": "../DomeinLaag/DomeinLaag.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net5.0": [
+      "DomeinLaag >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\thibe\\.nuget\\packages\\": {},
@@ -38,7 +57,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\thibe\\Documents\\GitHub\\EscapeFromTheWoods\\DomeinLaag\\DomeinLaag.csproj": {
+              "projectPath": "C:\\Users\\thibe\\Documents\\GitHub\\EscapeFromTheWoods\\DomeinLaag\\DomeinLaag.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

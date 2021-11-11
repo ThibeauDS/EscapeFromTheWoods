@@ -16,5 +16,12 @@
             Y = y;
         }
         #endregion
+
+        #region Methods
+        public override string ToString()
+        {
+            return $"Id:{Id} | X:{X} | Y:{Y}";
+        }
+        #endregion
     }
 }

@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "88a23dc6-b84d-4413-a347-f130bdabda66": {
+      "ProjectGuid": "88a23dc6-b84d-4413-a347-f130bdabda66",
+      "DisplayName": "DomeinLaag",
+      "ColorIndex": 0
+    },
+    "e8859569-9e26-45d8-b7f1-403077fba8f1": {
+      "ProjectGuid": "e8859569-9e26-45d8-b7f1-403077fba8f1",
+      "DisplayName": "ConsoleApp",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

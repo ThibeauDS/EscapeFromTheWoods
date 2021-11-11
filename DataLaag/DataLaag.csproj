@@ -8,4 +8,8 @@
     <Folder Include="ADO\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DomeinLaag\DomeinLaag.csproj" />
+  </ItemGroup>
+
 </Project>
