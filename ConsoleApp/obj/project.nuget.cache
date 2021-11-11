@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "0bPMSGCvMcuIMK0xrTioQKhkZC8IC2LV9iusb5kxgRhP/P6M3CRwxIzQGTmESUdkwmFGT4gyIi2gjJVlgsJF8Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\thibe\\Documents\\GitHub\\EscapeFromTheWoods\\ConsoleApp\\ConsoleApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\thibe\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\thibe\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
