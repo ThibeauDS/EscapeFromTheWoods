@@ -3,16 +3,23 @@ using DomeinLaag.Klassen;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 
 namespace ConsoleApp
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Random random = new Random();
-            Bos bos = new(0, 1000, 0, 1000);
-            List<Boom> bomen = AllesInEen.GenereerBomen(bos, 1000);
+            ApplicatieBeheerder applicatieBeheerder = new();
+
+            Bos bos = BosBeheerder.GenereerBos(1000);
+            List<Boom> bomen = BoomBeheerder.GenereerBomen(bos, 1000);
+            List<Aap> apen = AapBeheerder.GenereerApen(4, new List<string> { "Jerry", "Bart", "Monika", "Robin" });
+
+            List<Task> tasks = new();
+            tasks.Add(Task.Run(() => applicatieBeheerder.Process(bos, bomen, apen)));
+            Task.WaitAll(tasks.ToArray());
         }
     }
 }

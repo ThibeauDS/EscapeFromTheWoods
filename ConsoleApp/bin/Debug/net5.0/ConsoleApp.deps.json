@@ -57,6 +57,9 @@
         }
       },
       "DomeinLaag/1.0.0": {
+        "dependencies": {
+          "System.Drawing.Common": "6.0.0"
+        },
         "runtime": {
           "DomeinLaag.dll": {}
         }

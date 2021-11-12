@@ -14,5 +14,12 @@
             Naam = naam;
         }
         #endregion
+
+        #region Methods
+        public override string ToString()
+        {
+            return $"Id:{Id} | Naam:{Naam}";
+        }
+        #endregion
     }
 }

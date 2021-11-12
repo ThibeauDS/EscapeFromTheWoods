@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "9CxfBqlunZNsl1CisSr05+0eeeLFtr3CEQz683hLXBcznZL1kT52EVGAyPWi8Xp++UTxhxh37LlYIZRV0QqX4Q==",
+  "dgSpecHash": "LmX3+8lF/UIdRH6lGtvoj1FU+vBi0jENUcyhMLQMgH5tnFFRodxG87dAPrL2+rorvy62SvbyB5FWoI79oU+Gyw==",
   "success": true,
   "projectFilePath": "C:\\Users\\thibe\\Documents\\GitHub\\EscapeFromTheWoods\\DataLaag\\DataLaag.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\thibe\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\thibe\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
