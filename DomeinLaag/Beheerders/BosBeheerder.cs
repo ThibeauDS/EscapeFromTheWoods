@@ -9,13 +9,13 @@ namespace DomeinLaag.Beheerders
 {
     public class BosBeheerder
     {
-        public static Bos GenereerBos(int size)
+        public static Bos GenereerBos(int id, int size)
         {
-            return new Bos(1, 0, size, 0, size);
+            return new Bos(id, 0, size, 0, size);
         }
-        public static Bos GenereerBos(int width, int height)
+        public static Bos GenereerBos(int id, int width, int height)
         {
-            return new Bos(1, 0, width, 0, height);
+            return new Bos(id, 0, width, 0, height);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace DomeinLaag.Klassen
+﻿using System.Collections.Generic;
+
+namespace DomeinLaag.Klassen
 {
     public class Bos
     {
@@ -8,6 +10,7 @@
         public int Xmax { get; set; }
         public int Ymin { get; set; }
         public int Ymax { get; set; }
+        public List<Boom> Bomen { get; set; }
         #endregion
 
         #region Constructors

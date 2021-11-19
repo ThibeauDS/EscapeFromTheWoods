@@ -14,6 +14,7 @@ namespace DomeinLaag.Beheerders
 #pragma warning disable CA1416 // Validate platform compatibility
         private async Task GenereerBitmap(Bos bos, List<Boom> bomen, List<Aap> apen)
         {
+            Console.WriteLine($"Start bitmap - bos{bos.Id}");
             Bitmap bitmap = new(bos.Xmax - bos.Xmin, bos.Ymax - bos.Ymin);
 
             Graphics graphics = Graphics.FromImage(bitmap);
@@ -26,12 +27,13 @@ namespace DomeinLaag.Beheerders
 
             string path = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             bitmap.Save(Path.Combine(path, $"{bos.Id}_EscapeRoute.jpg"), ImageFormat.Jpeg);
+            Console.WriteLine($"Einde bitmap - bos{bos.Id}");
         }
 #pragma warning restore CA1416 // Validate platform compatibility
 
-        public async Task Process(Bos bos, List<Boom> bomen, List<Aap> apen)
+        public async Task Process(Bos bos, List<Aap> apen)
         {
-            await GenereerBitmap(bos, bomen, apen);
+            await GenereerBitmap(bos, bos.Bomen, apen);
         }
         #endregion
     }
