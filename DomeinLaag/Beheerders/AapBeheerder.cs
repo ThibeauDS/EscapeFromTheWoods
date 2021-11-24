@@ -14,18 +14,30 @@ namespace DomeinLaag.Beheerders
         {
             try
             {
-            List<Aap> apen = new();
+                List<Aap> apen = new();
 
-            if (namen != null && aantal <= namen.Count)
-            {
+                if (aantal > 4)
+                {
+                    throw new AapBeheerderException("Het aantal mag niet groter zijn dan 4.");
+                }
+
+                if (aantal > namen.Count)
+                {
+                    throw new AapBeheerderException("Het aantal kan niet groter zijn dan het aantal beschikbare namen.");
+                }
+
+                if (namen == null)
+                {
+                    throw new AapBeheerderException("Er moet minstens 1 naam zijn.");
+                }
+
                 for (int i = 0; i < aantal; i++)
                 {
                     Aap aap = new(i + 1, namen[i]);
                     apen.Add(aap);
                 }
-            }
 
-            return apen;
+                return apen;
             }
             catch (Exception ex)
             {

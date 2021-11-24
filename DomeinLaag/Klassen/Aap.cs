@@ -1,10 +1,13 @@
-﻿namespace DomeinLaag.Klassen
+﻿using System.Collections.Generic;
+
+namespace DomeinLaag.Klassen
 {
     public class Aap
     {
         #region Properties
         public int Id { get; set; }
         public string Naam { get; set; }
+        public List<Boom> Bomen { get; set; } = new();
         #endregion
 
         #region Constructors

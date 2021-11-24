@@ -25,6 +25,28 @@ namespace DomeinLaag.Beheerders
                 graphics.DrawEllipse(penGroen, boom.X - 3, boom.Y - 3, 6, 6);
             }
 
+            foreach (Aap aap in apen)
+            {
+                SolidBrush brush;
+                switch (aap.Id)
+                {
+                    case 1:
+                    default:
+                        brush = new(Color.Aqua);
+                        break;
+                    case 2:
+                        brush = new(Color.Yellow);
+                        break;
+                    case 3:
+                        brush = new(Color.Red);
+                        break;
+                    case 4:
+                        brush = new(Color.DeepSkyBlue);
+                        break;
+                }
+                graphics.FillEllipse(brush, aap.Bomen[0].X-3, aap.Bomen[0].Y-3, 6, 6);
+            }
+
             string path = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             bitmap.Save(Path.Combine(path, $"{bos.Id}_EscapeRoute.jpg"), ImageFormat.Jpeg);
             Console.WriteLine($"Einde bitmap - bos{bos.Id}");
