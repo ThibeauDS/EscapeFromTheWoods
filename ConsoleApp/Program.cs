@@ -11,34 +11,26 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            ApplicatieBeheerder applicatieBeheerder = new();
-
-            List<Aap> apen1 = AapBeheerder.GenereerApen(4, new List<string> { "Jerry", "Bart", "Monika", "Robin" });
-            Bos bos1 = BosBeheerder.GenereerBos(1, 1000);
-            bos1.Bomen = BoomBeheerder.GenereerBomen(bos1, 1000);
-            Boom.ZetAapInBoom(apen1, bos1.Bomen);
-
-            List<Aap> apen2 = AapBeheerder.GenereerApen(4, new List<string> { "Maurice", "Pascale", "Robert", "Janinne" });
-            Bos bos2 = BosBeheerder.GenereerBos(2, 500);
-            bos2.Bomen = BoomBeheerder.GenereerBomen(bos2, 500);
-            Boom.ZetAapInBoom(apen2, bos2.Bomen);
-
-            List<Aap> apen3 = AapBeheerder.GenereerApen(4, new List<string> { "Pol", "Pim", "Jan", "Kim" });
-            Bos bos3 = BosBeheerder.GenereerBos(3, 750);
-            bos3.Bomen = BoomBeheerder.GenereerBomen(bos3, 500);
-            Boom.ZetAapInBoom(apen3, bos3.Bomen);
-
-            List<Aap> apen4 = AapBeheerder.GenereerApen(4, new List<string> { "Zuster Katharina", "Broeder Jakob", "Heilige Maria", "Goedele" });
-            Bos bos4 = BosBeheerder.GenereerBos(4, 800);
-            bos4.Bomen = BoomBeheerder.GenereerBomen(bos4, 600);
-            Boom.ZetAapInBoom(apen4, bos4.Bomen);
+            Bos bos1 = BosBeheerder.GenereerBos(1, 1000, 1000, new List<string> { "Jerry", "Bart", "Monika", "Robin" });
+            Bos bos2 = BosBeheerder.GenereerBos(2, 500, 500, new List<string> { "初音ミク", "鏡音リン", "鏡音レン", "巡音ルカ", "MEIKO", "KAITO" });
+            Bos bos3 = BosBeheerder.GenereerBos(3, 750, 500, new List<string> { "Pol", "Pim", "Jan", "Kim", "Tim", "Raf", "Jos", "Rik", "Rob", "Ann" });
+            Bos bos4 = BosBeheerder.GenereerBos(4, 800, 600, new List<string> { "Zuster Katharina", "Broeder Jakob", "Heilige Maria", "Goedele" });
 
             List<Task> tasks = new();
-            tasks.Add(Task.Run(() => applicatieBeheerder.Process(bos1, apen1)));
-            tasks.Add(Task.Run(() => applicatieBeheerder.Process(bos2, apen2)));
-            tasks.Add(Task.Run(() => applicatieBeheerder.Process(bos3, apen3)));
-            tasks.Add(Task.Run(() => applicatieBeheerder.Process(bos4, apen4)));
+            tasks.Add(Task.Run(() => AapBeheerder.ProcessAap(bos1)));
+            tasks.Add(Task.Run(() => AapBeheerder.ProcessAap(bos2)));
+            tasks.Add(Task.Run(() => AapBeheerder.ProcessAap(bos3)));
+            tasks.Add(Task.Run(() => AapBeheerder.ProcessAap(bos4)));
             Task.WaitAll(tasks.ToArray());
+
+            ApplicatieBeheerder.GenereerDirectorys();
+
+            List<Task> tasks1 = new();
+            tasks1.Add(Task.Run(() => ApplicatieBeheerder.ProcessData(bos1)));
+            tasks1.Add(Task.Run(() => ApplicatieBeheerder.ProcessData(bos2)));
+            tasks1.Add(Task.Run(() => ApplicatieBeheerder.ProcessData(bos3)));
+            tasks1.Add(Task.Run(() => ApplicatieBeheerder.ProcessData(bos4)));
+            Task.WaitAll(tasks1.ToArray());
         }
     }
 }
