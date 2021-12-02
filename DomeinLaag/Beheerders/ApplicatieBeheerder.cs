@@ -204,7 +204,9 @@ namespace DomeinLaag.Beheerders
         {
             try
             {
-
+                Console.WriteLine($"Start DataUploadenNaarDatabank - bos{bos.Id}");
+                //TODO: DataUploadenNaarDatabank
+                Console.WriteLine($"Stop DataUploadenNaarDatabank - bos{bos.Id}");
             }
             catch (Exception ex)
             {
@@ -214,9 +216,10 @@ namespace DomeinLaag.Beheerders
 
         public static async Task ProcessData(Bos bos)
         {
+            //TODO: Vragen waarom de volgorde verschillende resultaten geeft.
             await GenereerBitmap(bos, bos.Bomen, bos.Apen);
             await GenereerTekstBestand(bos, bos.Apen);
-            //await DataUploadenNaarDatabank(bos, bos.Bomen, apen);
+            await DataUploadenNaarDatabank(bos, bos.Bomen, bos.Apen);
         }
         #endregion
     }

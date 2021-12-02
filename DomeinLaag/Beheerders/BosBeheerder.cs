@@ -14,6 +14,8 @@ namespace DomeinLaag.Beheerders
         {
             try
             {
+                Console.WriteLine($"Start - Genereer bos {id}");
+                Console.WriteLine($"Einde - Genereer bos {id}");
                 return new Bos(id, 0, grootte, 0, grootte);
             }
             catch (Exception ex)
@@ -26,6 +28,8 @@ namespace DomeinLaag.Beheerders
         {
             try
             {
+                Console.WriteLine($"Start - Genereer bos {id}");
+                Console.WriteLine($"Einde - Genereer bos {id}");
                 return new Bos(id, 0, breedte, 0, hoogte);
             }
             catch (Exception ex)
@@ -38,9 +42,11 @@ namespace DomeinLaag.Beheerders
         {
             try
             {
+                Console.WriteLine($"Start - Genereer bos {id}");
                 Bos bos = new(id, 0, grootte, 0, grootte, AapBeheerder.GenereerApen(apen));
                 bos.Bomen = BoomBeheerder.GenereerBomen(bos, aantalBomen);
                 Boom.ZetAapInBoom(bos.Apen, bos.Bomen);
+                Console.WriteLine($"Einde - Genereer bos {id}");
                 return bos;
             }
             catch (Exception ex)
@@ -53,9 +59,11 @@ namespace DomeinLaag.Beheerders
         {
             try
             {
+                Console.WriteLine($"Start - Genereer bos {id}");
                 Bos bos = new(id, 0, breedte, 0, hoogte, AapBeheerder.GenereerApen(apen));
                 bos.Bomen = BoomBeheerder.GenereerBomen(bos, aantalBomen);
                 Boom.ZetAapInBoom(bos.Apen, bos.Bomen);
+                Console.WriteLine($"Einde - Genereer bos {id}");
                 return bos;
             }
             catch (Exception ex)
