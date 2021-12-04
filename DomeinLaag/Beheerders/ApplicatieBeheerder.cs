@@ -1,4 +1,5 @@
 ﻿using DomeinLaag.Exceptions;
+using DomeinLaag.Interfaces;
 using DomeinLaag.Klassen;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,19 @@ namespace DomeinLaag.Beheerders
 {
     public class ApplicatieBeheerder
     {
+        #region Properties
+        private readonly IApplicatieRepository _repository;
+        #endregion
+
+        #region Constructors
+        public ApplicatieBeheerder(IApplicatieRepository repository)
+        {
+            _repository = repository;
+        }
+        #endregion
+
         #region Methods
-        public static void GenereerDirectorys()
+        public void GenereerDirectorys()
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             path += @"\EscapeFromTheWoods";
@@ -37,7 +49,7 @@ namespace DomeinLaag.Beheerders
         }
 #pragma warning disable CA1416 // Validate platform compatibility
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-        private static async Task GenereerBitmap(Bos bos, List<Boom> bomen, List<Aap> apen)
+        private async Task GenereerBitmap(Bos bos, List<Boom> bomen, List<Aap> apen)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             try
@@ -59,7 +71,7 @@ namespace DomeinLaag.Beheerders
 
                 foreach (Aap aap in apen)
                 {
-                    int rood = random.Next(50,256);
+                    int rood = random.Next(50, 256);
                     int groen = random.Next(50, 256);
                     int blauw = random.Next(50, 256);
 
@@ -124,7 +136,7 @@ namespace DomeinLaag.Beheerders
         }
 #pragma warning restore CA1416 // Validate platform compatibility
 
-        private static async Task GenereerTekstBestand(Bos bos, List<Aap> apen)
+        private async Task GenereerTekstBestand(Bos bos, List<Aap> apen)
         {
             try
             {
@@ -139,7 +151,7 @@ namespace DomeinLaag.Beheerders
                 }
 
                 string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                path += $"\\EscapeFromTheWoods\\Tekstbestanden\\Bos{bos.Id}.txt";                
+                path += $"\\EscapeFromTheWoods\\Tekstbestanden\\Bos{bos.Id}.txt";
                 await using StreamWriter streamWriter = File.CreateText(path);
 
                 int stap = 0;
@@ -187,7 +199,7 @@ namespace DomeinLaag.Beheerders
                                     $"----------------------------------"));
                                         break;
                                 }
-                                ontsnapt++;                                
+                                ontsnapt++;
                             }
                         }
                     }
@@ -200,12 +212,19 @@ namespace DomeinLaag.Beheerders
             }
         }
 
-        private static async Task DataUploadenNaarDatabank(Bos bos, List<Boom> bomen, List<Aap> apen)
+        private async Task DataUploadenNaarDatabank(Bos bos, List<Boom> bomen, List<Aap> apen)
         {
             try
             {
                 Console.WriteLine($"Start DataUploadenNaarDatabank - bos{bos.Id}");
-                //TODO: DataUploadenNaarDatabank
+                try
+                {
+
+                }
+                catch (Exception ex)
+                {
+                    throw new ApplicatieBeheerderException("Kan niet uploaden naar databank", ex);
+                }
                 Console.WriteLine($"Stop DataUploadenNaarDatabank - bos{bos.Id}");
             }
             catch (Exception ex)
@@ -214,12 +233,14 @@ namespace DomeinLaag.Beheerders
             }
         }
 
-        public static async Task ProcessData(Bos bos)
+        public async Task ProcessData(Bos bos)
         {
-            //TODO: Vragen waarom de volgorde verschillende resultaten geeft.
-            await GenereerBitmap(bos, bos.Bomen, bos.Apen);
-            await GenereerTekstBestand(bos, bos.Apen);
-            await DataUploadenNaarDatabank(bos, bos.Bomen, bos.Apen);
+            List<Task> tasks1 = new();
+            tasks1.Add(Task.Run(() => GenereerBitmap(bos, bos.Bomen, bos.Apen)));
+            tasks1.Add(Task.Run(() => GenereerTekstBestand(bos, bos.Apen)));
+            tasks1.Add(Task.Run(() => DataUploadenNaarDatabank(bos, bos.Bomen, bos.Apen)));
+            Task.WaitAll(tasks1.ToArray());
+            
         }
         #endregion
     }
