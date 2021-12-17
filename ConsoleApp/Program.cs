@@ -13,13 +13,13 @@ namespace ConsoleApp
     public class Program
     {
         #region Properties
-        private readonly static ApplicatieBeheerder _applicatieBeheerder = new(new ApplicationRepository(ConfigurationManager.ConnectionStrings["EscapeFromTheForest"].ConnectionString));
+        private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["EscapeFromTheWoodsDb"].ConnectionString;
+        private readonly static ApplicatieBeheerder _applicatieBeheerder = new(new ApplicationRepository(_connectionString));
         #endregion
 
         static void Main(string[] args)
         {
             Console.WriteLine("Start applicatie");
-            string connectionString = ConfigurationManager.ConnectionStrings["EscapeFromTheWoodsDb"].ConnectionString;
             Bos bos1 = BosBeheerder.GenereerBos(1, 1000, 1000, new List<string> { "Jerry", "Bart", "Monika", "Robin" });
             Bos bos2 = BosBeheerder.GenereerBos(2, 500, 500, new List<string> { "初音ミク", "鏡音リン", "鏡音レン", "巡音ルカ", "MEIKO", "KAITO" });
             Bos bos3 = BosBeheerder.GenereerBos(3, 750, 500, new List<string> { "Pol", "Pim", "Jan", "Kim", "Tim", "Raf", "Jos", "Rik", "Rob", "Ann" });

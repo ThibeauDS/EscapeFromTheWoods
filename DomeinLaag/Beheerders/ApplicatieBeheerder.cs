@@ -154,17 +154,17 @@ namespace DomeinLaag.Beheerders
                 path += $"\\EscapeFromTheWoods\\Tekstbestanden\\Bos{bos.Id}.txt";
                 await using StreamWriter streamWriter = File.CreateText(path);
 
-                int stap = 0;
+                int aantalStappen = 0;
                 foreach (Aap aap in apen)
                 {
-                    if (stap < aap.Bomen.Count)
+                    if (aantalStappen < aap.Bomen.Count)
                     {
-                        stap = aap.Bomen.Count;
+                        aantalStappen = aap.Bomen.Count;
                     }
                 }
 
                 int ontsnapt = 0;
-                for (int i = 0; i < stap; i++)
+                for (int i = 0; i < aantalStappen; i++)
                 {
                     foreach (Aap aap in apen)
                     {
@@ -172,31 +172,31 @@ namespace DomeinLaag.Beheerders
                         {
                             if (aap.Bomen[i].X != -1)
                             {
-                                await Task.Run(() => streamWriter.WriteLine($"{aap.Naam.PadRight(langsteNaam, ' ')} zit in een boom met Id: {aap.Bomen[i].Id.ToString().PadLeft(3, ' ')} met de coördinaten ({aap.Bomen[i].X}, {aap.Bomen[i].Y})."));
+                                await Task.Run(() => streamWriter.WriteLine($"{aap.Naam.PadRight(langsteNaam, ' ')} zit in een boom met Id: {aap.Bomen[i].Id,3} met de coördinaten ({aap.Bomen[i].X,3}, {aap.Bomen[i].Y,3})."));
                             }
                             else
                             {
                                 switch (ontsnapt)
                                 {
                                     case 0:
-                                        await Task.Run(() => streamWriter.WriteLine($"----------------------------------\n" +
+                                        await Task.Run(() => streamWriter.WriteLine($"-----------------------------------------------------------------\n" +
                                     $"Gefeliciteerd {aap.Naam}, je bent als eerste uit het bos geraakt.\n" +
-                                    $"----------------------------------"));
+                                    $"-----------------------------------------------------------------"));
                                         break;
                                     case 1:
-                                        await Task.Run(() => streamWriter.WriteLine($"----------------------------------\n" +
+                                        await Task.Run(() => streamWriter.WriteLine($"-----------------------------------------------------------------\n" +
                                     $"Gefeliciteerd {aap.Naam}, je bent als tweeded uit het bos geraakt.\n" +
-                                    $"----------------------------------"));
+                                    $"-----------------------------------------------------------------"));
                                         break;
                                     case 2:
-                                        await Task.Run(() => streamWriter.WriteLine($"----------------------------------\n" +
+                                        await Task.Run(() => streamWriter.WriteLine($"-----------------------------------------------------------------\n" +
                                     $"Gefeliciteerd {aap.Naam}, je bent als derde uit het bos geraakt.\n" +
-                                    $"----------------------------------"));
+                                    $"-----------------------------------------------------------------"));
                                         break;
                                     default:
-                                        await Task.Run(() => streamWriter.WriteLine($"----------------------------------\n" +
+                                        await Task.Run(() => streamWriter.WriteLine($"-----------------------------------------------------------------\n" +
                                     $"Gefeliciteerd {aap.Naam}, je bent uit het bos geraakt.\n" +
-                                    $"----------------------------------"));
+                                    $"-----------------------------------------------------------------"));
                                         break;
                                 }
                                 ontsnapt++;
