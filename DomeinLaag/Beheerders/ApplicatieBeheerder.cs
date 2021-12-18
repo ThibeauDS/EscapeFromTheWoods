@@ -233,7 +233,7 @@ namespace DomeinLaag.Beheerders
             }
         }
 
-        public async Task ProcessData(Bos bos)
+        private async Task ProcessData(Bos bos)
         {
             List<Task> tasks1 = new();
             tasks1.Add(Task.Run(() => GenereerBitmap(bos, bos.Bomen, bos.Apen)));
@@ -241,6 +241,16 @@ namespace DomeinLaag.Beheerders
             tasks1.Add(Task.Run(() => DataUploadenNaarDatabank(bos, bos.Bomen, bos.Apen)));
             Task.WaitAll(tasks1.ToArray());
             
+        }
+
+        public async Task Process(Bos bos)
+        {
+            Console.WriteLine($"Start - ProcessAap{bos.Id}");
+            await AapBeheerder.ProcessAap(bos);
+            Console.WriteLine($"Einde - ProcessAap{bos.Id}");
+            Console.WriteLine($"Start - ProcessData{bos.Id}");
+            await ProcessData(bos);
+            Console.WriteLine($"Einde - ProcessData{bos.Id}");
         }
         #endregion
     }
