@@ -32,7 +32,7 @@ namespace ConsoleApp
             _applicatieBeheerder.GenereerDirectorys();
             Console.WriteLine("Einde - Genereer mappensctructuur");
 
-            //Old Time: 00:00:00.9...
+            //Old Time: 00:00:01.3...
             //Console.WriteLine("Start - ProcessAap");
             //List<Task> tasks = new();
             //tasks.Add(AapBeheerder.ProcessAap(bos1));
@@ -51,7 +51,7 @@ namespace ConsoleApp
             //Task.WaitAll(tasks1.ToArray());
             //Console.WriteLine("Einde - ProcessData");
 
-            //Time: 00:00:00.5...
+            //Time: 00:00:00.6...
             List<Task> tasks1 = new();
             tasks1.Add(Task.Run(() => _applicatieBeheerder.Process(bos1)));
             tasks1.Add(Task.Run(() => _applicatieBeheerder.Process(bos2)));
